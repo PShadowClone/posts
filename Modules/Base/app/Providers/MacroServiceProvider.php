@@ -1,0 +1,86 @@
+<?php
+
+
+namespace Base\App\Providers;
+
+
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+
+class MacroServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->macros();
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+
+    }
+
+    /**
+     * register all macros
+     * @author Amr
+     */
+    function macros()
+    {
+        $this->__responseMacro();
+        $this->__routeMacro();
+    }
+
+    /**
+     * Add macro function to Response class
+     * @author Amr
+     */
+    function __responseMacro()
+    {
+        /**
+         * this is the unified Vue's response
+         *
+         * @author Amr
+         */
+        Response::macro('vue', function ($status, $message = '', $payload = []) {
+            return Response::json([
+                'status' => $status >= 200 && $status < 400,
+                'message' => $message,
+                'lang' => app()->getLocale(),
+                'payload' => $payload,
+            ])->header('Content-Type', 'application/json')
+                ->setStatusCode($status, $message);
+        });
+    }
+
+    /**
+     * Add macro function to Route class
+     * @author Amr
+     */
+    function __routeMacro()
+    {
+        Route::macro('operations', function ($name, $controller, $callback = null, $options = []) {
+            $options['prefix'] = $name;
+            Route::group($options, function () use ($controller, $callback) {
+                Route::post('/', $controller . '@store');
+                Route::put('/{id}', $controller . '@update');
+                Route::get('/', $controller . '@index');
+                Route::get('/{id}', $controller . '@show');
+                Route::delete('/{id}', $controller . '@delete');
+                if ($callback)
+                    $callback();
+            });
+
+
+        });
+    }
+}

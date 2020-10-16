@@ -1,0 +1,17 @@
+[
+    {
+        "package": "Base",
+        "fullPath": "Modules\/Base",
+        "createdAt": "2020-10-15 10:10:34"
+    },
+    {
+        "package": "Post",
+        "fullPath": "Modules\/Post",
+        "createdAt": "2020-10-15 11:10:08"
+    },
+    {
+        "package": "Comment",
+        "fullPath": "Modules\/Comment",
+        "createdAt": "2020-10-15 11:10:32"
+    }
+]

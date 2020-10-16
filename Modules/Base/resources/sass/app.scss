@@ -1,0 +1,37 @@
+ul.validation-error {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+[dir= 'rtl'] {
+  > *, > div, span {
+    direction: rtl !important;
+  }
+}
+
+[dir= 'ltr'] {
+  > * > div, span {
+    direction: ltr !important;
+  }
+}
+
+//@import "../../public/assets/template/css/style.rtl.css";
+
+//#main .direction-rtl {
+//}
+
+//@mixin rtl {
+//  @import "../../public/assets/template/css/style.rtl.css";
+//}
+//
+//@mixin ltr {
+//  @import "../../public/assets/template/css/style.ltr.css";
+//}
+//
+//.direction-ltr {
+//  @include ltr;
+//}
+//
+//.direction-rtl {
+//  @include rtl;
+//}

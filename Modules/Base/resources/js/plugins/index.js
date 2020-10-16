@@ -1,0 +1,6 @@
+require('./vue-good-table')
+require('./bootstrap-vue')
+require('./vee-validate')
+require('./vue-sweetalert2')
+require('./moment')
+require('./tinymce.js')
